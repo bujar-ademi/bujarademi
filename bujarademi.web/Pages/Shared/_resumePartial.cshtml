@@ -1,0 +1,187 @@
+﻿@using bujarademi.infrastructure.Models
+@model ResumeModel
+
+<div class="section-container">
+    <div class="page-heading">
+        <span class="icon"><i class="lnr lnr-license"></i></span>
+        <h2>My Resume.</h2>
+    </div>
+
+    <div class="row mb-20">
+        <div class="col-lg-6">
+            <div class="subheading">
+                <h3>Experience</h3>
+            </div>
+            <ul class="experience">
+                @foreach (var item in Model.Experiences)
+                {
+                    <li>
+                        <span class="line-left"></span>
+                        <div class="content">
+                            <h4>@item.Position</h4>
+                            <h5>@Html.Raw(item.Company)</h5>
+                            <p class="info">
+
+                            </p>
+                            @Html.Raw(item.Description)
+                        </div>
+                        <span class="year">
+                            <span class="to">
+                                @if (item.End.HasValue)
+                                {
+                                    @item.End.Value.ToString("MMMM yyyy")
+                                }
+                                else
+                                {
+                                    @:current
+                                }
+                            </span>
+                            <span class="from">@item.Start.ToString("MMMM yyyy")</span>
+                        </span>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="subheading">
+                <h3>Education</h3>
+            </div>
+
+            <ul class="education">
+                @foreach (var item in Model.Educations)
+                {
+                    <li>
+                        <span class="line-left"></span>
+                        <div class="content">
+                            <h4>@item.Title</h4>
+                            <h5>@Html.Raw(item.SchoolName)</h5>
+                            <p class="info">
+                                @Html.Raw(item.Description)
+                            </p>
+                        </div>
+                        <span class="year">
+                            <span class="to">
+                                @if (item.End.HasValue)
+                                {
+                                    @item.End.Value.Year
+                                }
+                                else
+                                {
+                                    @:current
+                                }
+                            </span>
+                            <span class="from">@item.Start.Year</span>
+                        </span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 skills">
+            <div class="subheading">
+                <h3>Skills</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @{
+            var chunkSize = Model.Skills.Count / 2;
+            var leftSkills = new List<SkillModel>();
+            var rightSkills = new List<SkillModel>();
+            if (chunkSize > 0)
+            {
+                for (int i = 0; i < chunkSize; i++)
+                {
+                    leftSkills.Add(Model.Skills[i]);
+                }
+                for (int i = chunkSize; i <= Model.Skills.Count - 1; i++)
+                {
+                    rightSkills.Add(Model.Skills[i]);
+                }
+            }
+            else
+            {
+                leftSkills.AddRange(Model.Skills);
+            }
+
+        }
+        <div class="col-lg-6 skills">
+
+            @foreach (var skill in leftSkills)
+            {
+                <div class="skill-item">
+                    <h4 class="progress-title">@skill.Name</h4>
+                    <div class="progress">
+                        <div class="progress-bar" data-progress-value="@skill.Percentage">
+                            <div class="progress-value">@skill.Percentage%</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="col-lg-6 skills">
+            @foreach (var skill in rightSkills)
+            {
+                <div class="skill-item">
+                    <h4 class="progress-title">@skill.Name</h4>
+                    <div class="progress">
+                        <div class="progress-bar" data-progress-value="@skill.Percentage">
+                            <div class="progress-value">@skill.Percentage%</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+    <!--Skills Row End-->
+</div>
+<script type="text/javascript">
+    $(function () {
+        /*======== Skills Progress Animation ========*/
+        if ($('.skills').length > 0) {
+            var el = new SimpleBar($('#resume')[0]).getScrollElement();
+
+            $(el).on('scroll', function () {
+
+                $('.progress .progress-bar').each(function () {
+                    var bottom_object = $(this).offset().top + $(this).outerHeight();
+                    var bottom_window = $(window).scrollTop() + $(window).height();
+                    var progressWidth = $(this).data('progress-value') + '%';
+                    if (bottom_window > bottom_object) {
+                        $(this).css({
+                            width: progressWidth
+                        });
+                        $(this).find('.progress-value').animate({
+                            countNum: parseInt(progressWidth, 10)
+                        }, {
+                            duration: 2000,
+                            easing: 'swing',
+                            step: function () {
+                                $(this).text(Math.floor(this.countNum) + '%');
+                            },
+                            complete: function () {
+                                $(this).text(this.countNum + '%');
+                            }
+                        });
+                    }
+                });
+
+            });
+        }
+    });
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-47226578-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-47226578-1', { 'page_path': location.pathname + location.hash, 'page_title': 'resume' });
+</script>

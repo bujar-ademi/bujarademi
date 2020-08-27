@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-random-animation="false" data-animation="@(new Random().Next(25, 35))">
+<head>
+    <!--Meta Tags-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="vcard, resume, personal, portfolio, cv, card, responsive, bujar ademi" />
+    <meta name="description" content="vCard / Resume / Bujar Ademi" />
+    <meta name="author" content="Bujar Ademi" />
+
+    <title>@ViewData["Title"] - bujarademi</title>
+    <link rel="stylesheet" href="~/css/plugins.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <link rel="stylesheet" href="~/css/blue-color.css" />
+
+    <script type="text/javascript" src="~/js/modernizr.js"></script>
+</head>
+<body>
+    <!--Preloader Start-->
+    <div class="preloader">
+        <div class="loader">
+            <!--Your Name-->
+            <h4>Bujar Ademi</h4>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--Preloader End-->
+
+    <div id="page">
+
+        <!--Header Start-->
+        <header>
+            <div class="header-content">
+
+                <!--Mobile Header-->
+                <div class="header-mobile">
+                    <a class="header-toggle"><i class="fas fa-bars"></i></a>
+                    <h2>Bujar Ademi</h2>
+                </div>
+
+                <!--Main Header-->
+                <div class="header-main" data-simplebar>
+                    <div class="image-container">
+                        <h2 class="header-name">Bujar Ademi</h2>
+                        <img src="img/profile-img.jpg" alt="profile-pic">
+                    </div>
+
+                    <!--Nav Menus-->
+                    <nav class="nav-menu">
+                        <ul>
+                            <li><a href="@NavPages.Navigate(ViewContext, "#home")" class="pt-link active home-link"><span class="nav-menu-icon"><i class="lnr lnr-home"></i></span>Home </a> </li>
+                            <li><a href="@NavPages.Navigate(ViewContext, "#about")" class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-user"></i></span>About Me</a></li>
+                            <li><a href="@NavPages.Navigate(ViewContext, "#resume")" class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-license"></i></span>Resume</a></li>
+                            @*<li><a href="#portfolio" class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-briefcase"></i></span>Portfolio</a></li>*@
+                            <li><a asp-page="/Blog" class="blog-link"><span class="nav-menu-icon"><i class="lnr lnr-book"></i></span>Blog</a></li>
+                            <li><a href="@NavPages.Navigate(ViewContext, "#contact")" class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-envelope"></i></span>Contact</a></li>
+                        </ul>
+                    </nav>
+
+                    <!--Nav Footer-->
+                    <div class="nav-footer">
+                        <!--Social Links-->
+                        <ul class="social">
+                            <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                            <li><a href="#"><i class="fab fa-youtube-square"></i></a></li>
+                        </ul>
+                        <!--Copyright Text-->
+                        <div class="copy">
+                            <p>@DateTime.Now.Year &copy; Bujar Ademi.<br>All Right Reserved.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <!--Header End-->
+        <!--Main Start-->
+        <div id="main" class="site-main">
+            @RenderBody()
+        </div>
+        <!--Main End-->
+
+    </div>
+
+    <!--Ajax Portfolio Container Start-->
+    <div class="ajax-portfolio-popup" data-simplebar>
+        <span class="ajax-loader"></span>
+        <div class="navigation-wrap">
+            <span class="popup-close"><i class="fas fa-times-circle"></i></span>
+        </div>
+        <div class="content-wrap">
+            <div class="popup-content"></div>
+        </div>
+    </div>
+    <!--Ajax Portfolio Container End-->
+
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins.js"></script>
+    <script type="text/javascript" src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        //Particles
+        particlesJS.load('particles-js', 'js/particles.json', function () {
+            console.log('callback - particles.js config loaded');
+        });
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47226578-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-47226578-1');
+
+        gtag('config', 'UA-47226578-1', { 'page_path': location.pathname + location.hash });
+
+    </script>
+
+</body>
+</html>

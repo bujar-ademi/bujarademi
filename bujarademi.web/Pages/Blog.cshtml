@@ -1,0 +1,64 @@
+﻿@page
+@model bujarademi.web.Pages.BlogModel
+@{
+    ViewData["Title"] = "Blog";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<section id="blog" class="blog-section pt-page">
+    <div class="section-container">
+        <!--Page Heading-->
+        <div class="page-heading">
+            <span class="icon"><i class="lnr lnr-book"></i></span>
+            <h2>My Blog.</h2>
+        </div>
+
+        <div class="row blogs-masonry">
+
+            @*<div class="col-lg-4 col-sm-6">
+                    <a href="blog-dark.html" class="blog-item">
+                        <div class="blog-image">
+                            <img src="img/blog/img-1.jpg" alt="#">
+                        </div>
+                        <div class="blog-content">
+                            <span class="cat">Web Design</span>
+                            <h4 class="blog-title">Best Way to Design</h4>
+                            <div class="blog-date">August 15, 2018</div>
+                        </div>
+                    </a>
+                </div>*@
+
+        </div>
+    </div>
+</section>
+
+<input type="hidden" id="profileId" value="@Model.Profile.Id" />
+
+<section id="home" class="banner-section pt-page" style="background-image: url('img/home-bg.jpg')">
+    <div id="particles-js"></div>
+
+    <div class="banner-content">
+        <h1 class="mb-20">Bujar <span>Ademi</span></h1>
+
+        <p class="cd-headline clip is-full-width">
+            <span>I am a </span>
+            <span class="cd-words-wrapper">
+                <b class="is-visible">.NET Developer</b>
+                <b>Web Developer</b>
+                <b>Database Developer</b>
+            </span>
+        </p>
+
+    </div>
+</section>
+
+<section id="about" class="about-section pt-page">
+</section>
+
+<section id="resume" class="resume-section pt-page">
+</section>
+
+<section id="blog" class="blog-section pt-page">
+</section>
+
+<section id="contact" class="contact-section pt-page">
+</section>

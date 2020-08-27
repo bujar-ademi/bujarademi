@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewData["Title"] - Bujar Ademi</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/admin-vendor.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin-site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/trumbowyg/ui/trumbowyg.min.css" />
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="app header-fixed sidebar-fixed" id="app">
+            <header class="header">
+                <div class="header-block header-block-collapse d-lg-none d-xl-none">
+                    <button class="collapse-btn" id="sidebar-collapse-btn">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+                <div class="header-block header-block-search">
+                    <div class="input-container">
+
+                    </div>
+                </div>
+                <div class="header-block header-block-buttons pull-right">
+
+                </div>
+                <div class="header-block header-block-nav">
+                    <ul class="nav-profile">
+                        <li class="profile dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <div class="img"><i class="fa fa-user fa-2x"></i></div>
+
+                                <span class="name">Bujar Ademi </span>
+                            </a>
+                            <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index"><i class="fa fa-user icon"></i> Profile</a>
+                                <div class="dropdown-divider"></div>
+
+                                <form id="logoutForm" class="form-inline" asp-page="/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                                    <a class="dropdown-item" href="#" onclick="doLogout();"><i class="fa fa-power-off icon"></i> Logout</a>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <aside class="sidebar">
+                <div class="sidebar-container">
+                    <div class="sidebar-header">
+                        <div class="brand">
+                            <a asp-page="/index" class="auth-title" target="_blank">Bujar Ademi</a>
+                        </div>
+                    </div>
+                    <nav class="menu">
+                        <ul class="sidebar-menu metismenu" id="sidebar-menu">
+                            <li class="@NavPages.PageNavClass(ViewContext, "Dashboard")">
+                                <a asp-page="/admin/index">
+                                    <i class="fa fa-home"></i> Dashboard
+                                </a>
+                            </li>
+                            <li class="@NavPages.PageNavClass(ViewContext, "Resume", "Experience", "Education") @NavPages.MenuIsOpen(ViewContext, "Resume", "Experience", "Education")">
+                                <a href="">
+                                    <i class="fa fa-photo"></i> Resume
+                                    <i class="fa arrow"></i>
+                                </a>
+                                <ul class="sidebar-nav collapse">
+                                    <li class="@NavPages.PageNavClass(ViewContext, "Resume")"><a asp-page="/admin/profile">Profile</a></li>
+                                    <li class="@NavPages.PageNavClass(ViewContext, "Experience")"><a asp-page="/admin/experience">Experience & Skills</a></li>
+                                    <li class="@NavPages.PageNavClass(ViewContext, "Education")"><a asp-page="/admin/education">Education</a></li>
+                                </ul>
+                            </li>
+                            <li class="@NavPages.PageNavClass(ViewContext, "Articles", "New-Article", "Categories") @NavPages.MenuIsOpen(ViewContext, "Blogs", "New-Article", "Categories")">
+                                <a href="">
+                                    <i class="fa fa-file-text-o"></i> Blog
+                                    <i class="fa arrow"></i>
+                                </a>
+                                <ul class="sidebar-nav collapse">
+                                    <li class="@NavPages.PageNavClass(ViewContext, "Articles")"><a asp-page="/admin/articles">Articles</a></li>
+                                    <li class="@NavPages.PageNavClass(ViewContext, "New-Article")"><a asp-page="/admin/new-article">New article</a></li>
+                                    <li class="@NavPages.PageNavClass(ViewContext, "Categories")"><a asp-page="/admin/categories">Categories</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+            <div class="sidebar-overlay" id="sidebar-overlay"></div>
+            <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
+            <div class="mobile-menu-handle"></div>
+
+            @RenderBody()
+
+            <footer class="footer">
+                <div class="footer-block buttons">
+                    &copy; @DateTime.Now.Year - Bujar Ademi
+                </div>
+                <div class="footer-block author">
+                    <ul>
+                        <li>
+                            created by Bujar Ademi
+                        </li>
+                    </ul>
+                </div>
+            </footer>
+
+            <div class="modal fade" id="modal-media">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Media Library</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                        </div>
+                        <div class="modal-body modal-tab-container">
+                            <ul class="nav nav-tabs modal-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#gallery" data-toggle="tab" role="tab">Gallery</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#upload" data-toggle="tab" role="tab">Upload</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content modal-tab-content">
+                                <div class="tab-pane fade" id="gallery" role="tabpanel">
+                                    <div class="images-container">
+                                        <div class="row">
+                                            <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+                                                <div class="image-container">
+                                                    <div class="image" style="background-image:url('https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg')"></div>
+                                                </div>
+                                            </div>                                            
+                                            <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+                                                <div class="image-container">
+                                                    <div class="image" style="background-image:url('https://s3.amazonaws.com/uifaces/faces/twitter/eduardo_olv/128.jpg')"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade active in" id="upload" role="tabpanel">
+                                    <div class="upload-container">
+                                        <div id="dropzone">
+                                            <form asp-page="/admin/profile" asp-page-handler="UploadMedia" method="POST" enctype="multipart/form-data" class="dropzone needsclick dz-clickable" id="demo-upload">
+                                                <div class="dz-message-block">
+                                                    <div class="dz-message needsclick"> Drop files here or click to upload. </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Insert Selected</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+            <div class="modal fade" id="confirm-modal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"><i class="fa fa-warning"></i> Alert</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure want to do this?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div>
+    </div>
+
+    <!-- Reference block for JS -->
+    <div class="ref" id="ref">
+        <div class="color-primary"></div>
+        <div class="chart">
+            <div class="color-primary"></div>
+            <div class="color-secondary"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="~/js/admin-vendor.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/lib/trumbowyg/trumbowyg.min.js"></script>
+    <script type="text/javascript" src="~/lib/trumbowyg/plugins/upload/trumbowyg.upload.min.js"></script>
+    <script type="text/javascript" src="~/lib/loadingoverlay.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootbox.min.js"></script>
+    <script type="text/javascript" src="~/js/admin-site.js" asp-append-version="true"></script>
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

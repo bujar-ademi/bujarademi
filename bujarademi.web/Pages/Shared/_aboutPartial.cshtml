@@ -1,0 +1,232 @@
+﻿@model bujarademi.infrastructure.Models.ProfileDto
+<div class="section-container">
+    <!--Page Heading-->
+    <div class="page-heading">
+        <span class="icon"><i class="lnr lnr-user"></i></span>
+        <h2>About Me.</h2>
+    </div>
+
+    <!-- About Info Row Start-->
+    <div class="row about mb-70">
+
+        <div class="col-lg-8">
+            @Html.Raw(Model.Description)
+
+            <div class="signature mt-20">
+                @*<img src="img/signature-white.png" alt="">*@
+            </div>
+        </div>
+
+        <!--Personal Info-->
+        <div class="col-lg-4">
+            <div class="about-info">
+                <h3 class="mb-20">Personal Information</h3>
+                <ul>
+                    <li><span class="title">Name</span><span class="value">@Model.FirstName @Model.LastName</span></li>
+                    <li><span class="title">Age</span><span class="value">@(DateTime.Now.Year - Model.Birthdate.Year) Years</span></li>
+                    <li><span class="title">Residence</span><span class="value">@Model.City, @Model.Country</span></li>
+                    <li><span class="title">Address</span><span class="value">@Model.Address</span></li>
+                    <li><span class="title">Email</span><span class="value">@Model.EmailAddress</span></li>
+                    <li><span class="title">Phone</span><span class="value">@Model.PhoneNumber</span></li>
+                    @*<li><span class="title">Freelance</span><span class="value">Available</span></li>*@
+                </ul>
+                <div class="resume-button mt-30">
+                    <a class="btn-main" href="~/documents/Bujar_Ademi_CV_(EN).pdf" target="_blank" title="Download Resume">Download Resume</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About Info Row End-->
+    <!--Services Row Start-->
+    @*<div class="row services mb-30">
+            <div class="col-md-12">
+                <div class="subheading">
+                    <h3>Services</h3>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="service-item">
+                    <div class="icon"><i class="lnr lnr-laptop"></i></div>
+                    <h4>Web Development</h4>
+                    <p>Amet aspernatur delectus maxime ducimus similique Ratione asperiores corporis provident aut libero.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="service-item">
+                    <div class="icon"><i class="lnr lnr-eye"></i></div>
+                    <h4>Web Design</h4>
+                    <p>Amet aspernatur delectus maxime ducimus similique Ratione asperiores corporis provident aut libero.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="service-item">
+                    <div class="icon"><i class="lnr lnr-laptop-phone"></i></div>
+                    <h4>Responsive Design</h4>
+                    <p>Amet aspernatur delectus maxime ducimus similique Ratione asperiores corporis provident aut libero.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="service-item">
+                    <div class="icon"><i class="lnr lnr-camera"></i></div>
+                    <h4>Photography</h4>
+                    <p>Amet aspernatur delectus maxime ducimus similique Ratione asperiores corporis provident aut libero.</p>
+                </div>
+            </div>
+        </div>*@
+    <!--Services Row End-->
+    <!--Clients Row Start-->
+    @*<div class="row clients mb-70">
+            <div class="col-md-12">
+                <div class="subheading">
+                    <h3>Clients</h3>
+                </div>
+            </div>
+
+            <div class="owl-carousel owl-theme">
+
+                <div class="client-logo">
+                    <a href="#">
+                        <img src="img/clients/client-01.png" alt="">
+                    </a>
+                </div>
+
+                <div class="client-logo">
+                    <a href="#">
+                        <img src="img/clients/client-02.png" alt="">
+                    </a>
+                </div>
+
+                <div class="client-logo">
+                    <a href="#">
+                        <img src="img/clients/client-03.png" alt="">
+                    </a>
+                </div>
+
+                <div class="client-logo">
+                    <a href="#">
+                        <img src="img/clients/client-04.png" alt="">
+                    </a>
+                </div>
+
+                <div class="client-logo">
+                    <a href="#">
+                        <img src="img/clients/client-05.png" alt="">
+                    </a>
+                </div>
+
+                <div class="client-logo">
+                    <a href="#">
+                        <img src="img/clients/client-06.png" alt="">
+                    </a>
+                </div>
+
+                <div class="client-logo">
+                    <a href="#">
+                        <img src="img/clients/client-07.png" alt="">
+                    </a>
+                </div>
+
+                <div class="client-logo">
+                    <a href="#">
+                        <img src="img/clients/client-08.png" alt="">
+                    </a>
+                </div>
+
+                <div class="client-logo">
+                    <a href="#">
+                        <img src="img/clients/client-09.png" alt="">
+                    </a>
+                </div>
+
+            </div>
+        </div>*@
+
+    @*<div class="row testimonials mb-50">
+            <div class="col-md-12">
+                <div class="subheading">
+                    <h3>Testimonials</h3>
+                </div>
+                <div class="owl-carousel owl-theme">
+
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <p>Ipsum ab necessitatibus numquam vitae quis. Nobis nostrum deserunt suscipit eos fugit. Consectetur dolorum temporibus facilis impedit exercitationem dignissimos.</p>
+                        </div>
+                        <div class="testimonial-meta">
+
+                            <div class="meta-info">
+                                <h4>Kate Fox</h4>
+                                <p>Digital Marketing Executive</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var el = new SimpleBar($('#about')[0]);
+
+        /*========Testimonials OwlCarousel Setup========*/
+        $(".testimonials .owl-carousel").owlCarousel({
+            loop: true,
+            margin: 30,
+            autoplay: true,
+            smartSpeed: 500,
+            responsiveClass: true,
+            dots: false,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                800: {
+                    items: 1,
+                },
+                1000: {
+                    items: 2,
+                },
+            },
+        });
+
+        /*========Clients OwlCarousel Setup========*/
+        //$(".clients .owl-carousel").owlCarousel({
+        //    loop: true,
+        //    margin: 30,
+        //    autoplay: true,
+        //    smartSpeed: 500,
+        //    responsiveClass: true,
+        //    autoplayHoverPause: true,
+        //    dots: false,
+        //    responsive: {
+        //        0: {
+        //            items: 2,
+        //        },
+        //        500: {
+        //            items: 3,
+        //        },
+        //        700: {
+        //            items: 4,
+        //        },
+        //        1000: {
+        //            items: 6,
+        //        },
+        //    },
+        //});
+    });
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-47226578-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-47226578-1', { 'page_path': location.pathname + location.hash, 'page_title': 'about' });
+</script>

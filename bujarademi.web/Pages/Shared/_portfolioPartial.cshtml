@@ -1,0 +1,283 @@
+﻿
+<div class="section-container">
+
+    <!--Page Heading-->
+    <div class="page-heading">
+        <span class="icon"><i class="lnr lnr-briefcase"></i></span>
+        <h2>Portfolio.</h2>
+    </div>
+
+    <div class="row">
+        <!--Portfolio Filter-->
+        <div class="col-md-12 portfolio-filter text-center">
+            <ul>
+                <li class="active" data-filter="*" id="allPortfolio">All</li>
+                <li data-filter=".brand" id="brandP">Brand</li>
+                <li data-filter=".design">Design</li>
+                <li data-filter=".graphic">Graphic</li>
+            </ul>
+        </div>
+    </div>
+
+    <!--Portfolio Items-->
+    <div class="row portfolio-items mb-50">
+
+        <!--Portfolio Item-->
+        <div class="item col-lg-4 col-sm-6 brand graphic">
+            <a class="image-link" href="img/portfolio/img-1.jpg">
+                <figure>
+                    <img src="img/portfolio/img-1.jpg" alt="">
+                    <figcaption>
+                        <h4>Book Design</h4>
+                        <p>Graphic</p>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+
+        <!--Portfolio Item-->
+        <div class="item col-lg-4 col-sm-6 design">
+            <a class="ajax-link" href="single-work.html">
+                <figure>
+                    <img src="img/portfolio/img-2.jpg" alt="">
+                    <figcaption>
+                        <h4>Notepad Design</h4>
+                        <p>Design</p>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+
+        <!--Portfolio Item-->
+        <div class="item col-lg-4 col-sm-6 design graphic">
+            <a class="video-link" href="https://www.youtube.com/watch?v=k_okcNVZqqI">
+                <figure>
+                    <img src="img/portfolio/img-3.jpg" alt="">
+                    <figcaption>
+                        <h4>Creative Cup</h4>
+                        <p>Graphic</p>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+
+        <!--Portfolio Item-->
+        <div class="item col-lg-4 col-sm-6 design">
+            <a class="image-link" href="img/portfolio/img-4.jpg">
+                <figure>
+                    <img src="img/portfolio/img-4.jpg" alt="">
+                    <figcaption>
+                        <h4>Business Card</h4>
+                        <p>Design</p>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+
+        <!--Portfolio Item-->
+        <div class="item col-lg-4 col-sm-6 brand">
+            <a class="ajax-link" href="single-work.html">
+                <figure>
+                    <img src="img/portfolio/img-5.jpg" alt="">
+                    <figcaption>
+                        <h4>Back Pack</h4>
+                        <p>Brand</p>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+
+        <!--Portfolio Item-->
+        <div class="item col-lg-4 col-sm-6 design">
+            <a class="ajax-link" href="single-work.html">
+                <figure>
+                    <img src="img/portfolio/img-6.jpg" alt="">
+                    <figcaption>
+                        <h4>Door Hangar</h4>
+                        <p>Design</p>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+
+        <!--Portfolio Item-->
+        <div class="item col-lg-4 col-sm-6 graphic">
+            <a class="image-link" href="img/portfolio/img-7.jpg">
+                <figure>
+                    <img src="img/portfolio/img-7.jpg" alt="">
+                    <figcaption>
+                        <h4>Notepad Design</h4>
+                        <p>graphic</p>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+
+        <!--Portfolio Item-->
+        <div class="item col-lg-4 col-sm-6 brand">
+            <a class="image-link" href="img/portfolio/img-8.jpg">
+                <figure>
+                    <img src="img/portfolio/img-8.jpg" alt="">
+                    <figcaption>
+                        <h4>Creative Flyer</h4>
+                        <p>Brand</p>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+
+        <!--Portfolio Item-->
+        <div class="item col-lg-4 col-sm-6 brand">
+            <a class="video-link" href="https://www.youtube.com/watch?v=k_okcNVZqqI">
+                <figure>
+                    <img src="img/portfolio/img-9.jpg" alt="">
+                    <figcaption>
+                        <h4>Mobile App</h4>
+                        <p>Brand</p>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+
+        <!--Portfolio Item-->
+        <div class="item col-lg-4 col-sm-6 graphic">
+            <a class="image-link" href="img/portfolio/img-10.jpg">
+                <figure>
+                    <img src="img/portfolio/img-10.jpg" alt="">
+                    <figcaption>
+                        <h4>Cup Design</h4>
+                        <p>Graphic</p>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+
+        <!--Portfolio Item-->
+        <div class="item col-lg-4 col-sm-6 brand graphic">
+            <a class="ajax-link" href="single-work.html">
+                <figure>
+                    <img src="img/portfolio/img-11.jpg" alt="">
+                    <figcaption>
+                        <h4>Creative Box</h4>
+                        <p>brand</p>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">       
+    $(function () {
+        new SimpleBar($('#portfolio')[0]);        
+
+        /*======== Isotope Portfolio Setup ========*/
+        var $elements = $(".portfolio-items"),
+            $filters = $('.portfolio-filter ul li');
+        $elements.isotope();
+
+        $filters.on('click', function () {
+            $filters.removeClass('active');
+            $(this).addClass('active');
+            var selector = $(this).data('filter');
+            $(".portfolio-items").isotope({
+                filter: selector,
+                hiddenStyle: {
+                    transform: 'scale(.2) skew(30deg)',
+                    opacity: 0
+                },
+                visibleStyle: {
+                    transform: 'scale(1) skew(0deg)',
+                    opacity: 1,
+                },
+                transitionDuration: '.5s'
+            });
+        });    
+
+        $(".portfolio-items").isotope({
+            filter: '*',
+            hiddenStyle: {
+                transform: 'scale(.2) skew(30deg)',
+                opacity: 0
+            },
+            visibleStyle: {
+                transform: 'scale(1) skew(0deg)',
+                opacity: 1,
+            },
+            transitionDuration: '.5s'
+        });
+
+        /*======== Portfolio Image Link Setup ========*/
+        $('.portfolio-items .image-link').magnificPopup({
+            type: 'image',
+            gallery: {
+                enabled: true
+            }
+        });
+
+        /*======== Portfolio Video Link Setup ========*/
+        $('.portfolio-items .video-link').magnificPopup({
+            type: 'iframe',
+            gallery: {
+                enabled: true
+            }
+        });
+
+        /*======== Portfolio Ajax Link Setup ========*/
+        ajaxPortfolioSetup($('.portfolio-items .ajax-link'), $('.ajax-portfolio-popup'));
+
+        /*======== Portfolio Tilt Setup ========*/
+        $('#portfolio .item figure').tilt({
+            maxTilt: 3,
+            glare: true,
+            maxGlare: .6,
+            reverse: true
+        });
+
+        setTimeout(function() {
+            $('#allPortfolio').trigger('click');
+        }, 100);
+        
+    });
+    /*********** Function Ajax Portfolio Setup **********/
+    function ajaxPortfolioSetup($ajaxLink, $ajaxContainer) {
+        $ajaxLink.on('click', function (e) {
+            var link = $(this).attr('href');
+
+            if (link === "#") {
+                e.preventDefault();
+                return;
+            }
+
+            $ajaxContainer.find('.content-wrap .popup-content').empty();
+
+            $ajaxContainer.addClass('on');
+            $.ajax({
+                cache: false,
+                headers: { "cache-control": "no-cache" },
+                url: link,
+                beforeSend: function () {
+                    $ajaxContainer.find('.ajax-loader').show();
+                },
+                success: function (result) {
+                    $ajaxContainer.find('.content-wrap .popup-content').html(result);
+                },
+                complete: function () {
+                    $ajaxContainer.find('.ajax-loader').hide();
+                },
+                error: function (e) {
+                    $ajaxContainer.find('.ajax-loader').hide();
+                    $ajaxContainer.find('.content-wrap .popup-content').html('<h1 class="text-center">Something went wrong! Retry or refresh the page.</h1>')
+                }
+            });
+            e.preventDefault();
+        });
+
+        $ajaxContainer.find('.popup-close').on('click', function () {
+            $ajaxContainer.removeClass('on');
+        });
+
+
+    }
+</script>

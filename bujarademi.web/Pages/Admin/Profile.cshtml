@@ -1,0 +1,166 @@
+﻿@page
+@model bujarademi.web.Pages.Admin.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = "Resume";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<article class="content forms-page">
+    <div class="title-block">
+        <h3 class="title">Resume editor</h3>
+        <p class="title-description">Form to edit my resume</p>
+    </div>
+    <section class="section">
+        <form method="post" id="form-profile" asp-page="/Admin/Profile" asp-page-handler="ProfileSave">
+            @Html.AntiForgeryToken()
+        <div class="row sameheight-container">            
+            <div class="col-md-6">
+                <div class="card card-block sameheight-item">
+                    <div class="title-block">
+                        <h3 class="title">Profile</h3>
+                    </div>
+                    <input asp-for="Profile.Id" type="hidden" />
+                    <div class="form-group">
+                        <label class="control-label" asp-for="Profile.FirstName">First name</label>
+                        <input type="text" asp-for="Profile.FirstName" class="form-control underlined" placeholder="First Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" asp-for="Profile.LastName">Last Name</label>
+                        <input type="text" asp-for="Profile.LastName" class="form-control underlined" placeholder="Last Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" asp-for="Profile.Birthdate">Birth date</label>
+                        <input asp-for="Profile.Birthdate" class="form-control underlined" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" asp-for="Profile.Address">Address</label>
+                        <input asp-for="Profile.Address" class="form-control underlined" placeholder="Address" />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="control-label" asp-for="Profile.ZipCode">Zip code</label>
+                                <input type="text" asp-for="Profile.ZipCode" class="form-control underlined" placeholder="Zip Code" />
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <label class="control-label" asp-for="Profile.City">City</label>
+                                <input type="text" asp-for="Profile.City" class="form-control underlined" placeholder="City" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" asp-for="Profile.Country">Country</label>
+                        <input type="text" asp-for="Profile.Country" class="form-control underlined" placeholder="Country" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" asp-for="Profile.EmailAddress">Email</label>
+                        <input type="email" asp-for="Profile.EmailAddress" class="form-control underlined" placeholder="Email address" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" asp-for="Profile.PhoneNumber">Phone number</label>
+                        <input type="tel" asp-for="Profile.PhoneNumber" class="form-control underlined" placeholder="Phone number" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card card-block" style="height: 726px;">                   
+
+                    <div class="form-group">
+                        <label class="control-label" asp-for="Profile.Description">Description</label>
+                        <textarea asp-for="Profile.Description" class="trumbowyg"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit" id="btnSaveProfile">Save</button>
+                        <div class="infoMessage">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </section>
+</article>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {          
+
+            $('#btnSaveProfile').on('click', function (e) {
+                e.preventDefault();
+
+                var id = $('#Profile_Id').val();
+                var firstName = $('#Profile_FirstName').val();
+                var lastName = $('#Profile_LastName').val();
+                var birthDate = $('#Profile_Birthdate').val();
+                var address = $('#Profile_Address').val();
+                var city = $('#Profile_City').val();
+                var zipCode = $('#Profile_ZipCode').val();
+                var country = $('#Profile_Country').val();
+                var emailAddress = $('#Profile_EmailAddress').val();
+                var phoneNumber = $('#Profile_PhoneNumber').val();
+                var description = $('#Profile_Description').val();
+
+                var profile = {
+                    Id: id,
+                    FirstName: firstName,
+                    LastName: lastName,
+                    Birthdate: birthDate,
+                    Address: address,
+                    City: city,
+                    ZipCode: zipCode,
+                    Country: country,
+                    EmailAddress: emailAddress,
+                    PhoneNumber: phoneNumber,
+                    Description: description
+                };
+
+                $.LoadingOverlay("show");
+                $('.infoMessage').empty();
+
+                $.ajax({
+                    url: '/Admin/Profile?handler=ProfileSave',
+                    type: 'post',
+                    data: JSON.stringify(profile),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    headers: {
+                        "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        $.LoadingOverlay("hide");
+                        $('.infoMessage').html('<div class="alert alert-success alert-dismissable">' +
+                            '<button type="button" class="close" ' +
+                            'data-dismiss="alert" aria-hidden="true">' +
+                            '&times;' +
+                            '</button>' +
+                            'Profile successfully changed.' +
+                            '</div>');
+                    },
+                    error: function (errorData) {
+                        console.log(errorData);
+                        $.LoadingOverlay("hide");
+                        $('.infoMessage').html('<div class="alert alert-danger alert-dismissable">' +
+                            '<button type="button" class="close" ' +
+                            'data-dismiss="alert" aria-hidden="true">' +
+                            '&times;' +
+                            '</button>' +
+                            'Error updating profile.' + errorData +
+                            '</div>');
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,42 @@
+﻿@page
+@model LoginModel
+
+@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Log in";
+}
+
+<p class="text-center">LOGIN TO CONTINUE</p>
+<form id="login-form" method="POST">
+    <div class="form-group">
+        <div asp-validation-summary="All" class="errorInput text-danger"></div>
+    </div>
+    <div class="form-group">
+        @Html.AntiForgeryToken()
+        <label asp-for="Input.Email">Username</label>
+        <input asp-for="Input.Email" class="form-control underlined" placeholder="Your email address" required />
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Input.Password">Password</label>
+        <input asp-for="Input.Password" class="form-control underlined" placeholder="Your password" required />
+        <span asp-validation-for="Input.Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="remember">
+            <label asp-for="Input.RememberMe">
+                <input asp-for="Input.RememberMe" />
+                @Html.DisplayNameFor(m => m.Input.RememberMe)
+            </label>
+        </label>
+        
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-block btn-primary">Log in</button>
+    </div>
+    
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

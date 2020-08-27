@@ -1,0 +1,18 @@
+﻿@model bujarademi.infrastructure.Models.SkillModel
+
+<div class="tab-content modal-tab-content">
+    <div class="col-md-12">
+        <form role="form">
+            <input type="hidden" asp-for="Id" id="skill-id" />
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label class="control-label" asp-for="Name">Skill name</label>
+                <input type="text" asp-for="Name" id="skill-name" class="form-control underlined" placeholder="Skill name" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="Percentage">Percentage</label>
+                <input type="number" asp-for="Percentage" id="skill-percentage" class="form-control underlined" placeholder="Percentage" />
+            </div>            
+        </form>
+    </div>
+</div>

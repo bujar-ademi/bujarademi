@@ -1,0 +1,36 @@
+﻿@model bujarademi.infrastructure.Models.ExperienceDto
+
+<div class="tab-content modal-tab-content">
+    <div class="col-md-12">
+        <form role="form">
+            <input type="hidden" asp-for="Id" id="experience-id" />
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label class="control-label" asp-for="Position">Position</label>
+                <input type="text" asp-for="Position" id="experience-position" class="form-control underlined" placeholder="Position" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="Company">Company</label>
+                <textarea rows="1" class="form-control trumbowyg-small" asp-for="Company" id="experience-company" placeholder="Company"></textarea>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label" asp-for="Start">Start</label>
+                        <input asp-for="Start" class="form-control underlined" placeholder="Start" id="experience-start" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label" asp-for="End">End</label>
+                        <input asp-for="End" class="form-control underlined" placeholder="End" id="experience-end" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Description</label>
+                <textarea rows="3" class="form-control underlined trumbowyg" asp-for="Description" placeholder="Description" id="experience-description"></textarea>
+            </div>
+        </form>
+    </div>     
+</div>
