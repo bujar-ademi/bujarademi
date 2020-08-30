@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,10 +17,37 @@ namespace bujarademi.web.Pages.Admin
         }
         public IEnumerable<CategoryDto> Categories { get; set; }
 
-        public async Task<IActionResult> OnGetAsync()
+        [BindProperty]
+        public CategoryDto Category { get; set; }
+        public async Task<IActionResult> OnGetAsync(int? id = null)
         {
             Categories = await blogService.GetCategoriesAsync();
+            if (id.HasValue)
+            {
+                Category = Categories.FirstOrDefault(x => x.Id == id.Value);
+            }
+            else
+            {
+                Category = new CategoryDto();
+            }
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            await blogService.AddOrUpdateAsync(Category);
+
+            return LocalRedirect("/Admin/Categories");
+        }
+
+        public async Task<IActionResult> OnDeleteCategoryAsync(int categoryId)
+        {
+            await blogService.DeleteCategoryAsync(categoryId).ConfigureAwait(false);
+            return new JsonResult("ok");
         }
     }
 }
